@@ -61,6 +61,9 @@
 /** The data soruce must adopt the `TKCalendarMonthViewDataSource` protocol. The data source is not retained. */
 @property (nonatomic,assign) id <TKCalendarMonthViewDataSource> dataSource;
 
+/** Title label from the top of the calendar available to move, style etc */
+@property (nonatomic, assign) UILabel *monthYear;
+
 /** The current date highlighted on the month grid.
  @return An `NSDate` object set to the month, year and day of the current selection.
  */

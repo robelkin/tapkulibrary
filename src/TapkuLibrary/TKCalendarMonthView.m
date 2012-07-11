@@ -640,7 +640,7 @@
 #pragma mark -
 @implementation TKCalendarMonthView
 @synthesize delegate,dataSource;
-
+@dynamic monthYear;
 
 - (id) init{
 	self = [self initWithSundayAsFirst:YES];
