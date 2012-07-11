@@ -1010,4 +1010,55 @@
 	return shadow;
 }
 
+#pragma mark TKCalendarMonthTilesDelegate methods
+- (UIImage *) dateTile
+{
+    if([self.delegate respondsToSelector:@selector(dateTileForMonthView:)] && [self.delegate performSelector:@selector(dateTileForMonthView:) withObject:self] != nil)
+    {
+        return [self.delegate performSelector:@selector(dateTileForMonthView:) withObject:self];
+    }
+
+    return [UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Date Tile.png")];
+}
+
+- (UIImage *) todayTile
+{
+    if([self.delegate respondsToSelector:@selector(todayTileForMonthView:)] && [self.delegate performSelector:@selector(todayTileForMonthView:) withObject:self] != nil)
+    {
+        return [self.delegate performSelector:@selector(todayTileForMonthView:) withObject:self];
+    }
+
+    return [UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Today Tile.png")];
+}
+
+- (UIImage *) selectedTile
+{
+    if([self.delegate respondsToSelector:@selector(selectedTileForMonthView:)] && [self.delegate performSelector:@selector(selectedTileForMonthView:) withObject:self] != nil)
+    {
+        return [self.delegate performSelector:@selector(selectedTileForMonthView:) withObject:self];
+    }
+    
+    return [UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Date Tile Selected.png")];
+}
+
+- (UIImage *) todaySelectedTile
+{
+    if([self.delegate respondsToSelector:@selector(todaySelectedTileForMonthView:)] && [self.delegate performSelector:@selector(todaySelectedTileForMonthView:) withObject:self] != nil)
+    {
+        return [self.delegate performSelector:@selector(todaySelectedTileForMonthView:) withObject:self];
+    }
+
+    return [UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Today Selected Tile.png")];
+}
+
+- (UIImage *) hoverTile
+{
+    if([self.delegate respondsToSelector:@selector(hoverTileForMonthView:)] && [self.delegate performSelector:@selector(hoverTileForMonthView:) withObject:self] != nil)
+    {
+        return [self.delegate performSelector:@selector(hoverTileForMonthView:) withObject:self];
+    }
+
+    return [UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Date Tile Gray.png")];
+}
+
 @end
