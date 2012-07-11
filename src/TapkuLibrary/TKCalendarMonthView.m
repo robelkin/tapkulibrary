@@ -666,22 +666,6 @@
 	CGRect r = CGRectMake(0, 0, self.tileBox.bounds.size.width, self.tileBox.bounds.size.height + self.tileBox.frame.origin.y);
 	self.frame = r;
 	
-	[self addSubview:self.topBackground];
-	self.topBackground.frame = CGRectMake(0, 0, self.bounds.size.width, self.topBackground.frame.size.height);
-	[self.tileBox addSubview:currentTile];
-	[self addSubview:self.tileBox];
-	
-	NSDate *date = [NSDate date];
-	self.monthYear.text = [NSString stringWithFormat:@"%@ %@",[date monthString],[date yearString]];
-	[self addSubview:self.monthYear];
-	
-	
-	[self addSubview:self.leftArrow];
-	[self addSubview:self.rightArrow];
-	[self addSubview:self.shadow];
-	self.shadow.frame = CGRectMake(0, self.frame.size.height-self.shadow.frame.size.height+21, self.bounds.size.width, self.shadow.frame.size.height);
-	
-	
 	NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
 	[dateFormat setDateFormat:@"eee"];
 	[dateFormat setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
@@ -739,6 +723,24 @@
 	return self;
 }
 
+- (void) drawRect:(CGRect)rect
+{
+    [super drawRect:rect];
+    
+    [self addSubview:self.topBackground];
+	self.topBackground.frame = CGRectMake(0, 0, self.bounds.size.width, self.topBackground.frame.size.height);
+	[self.tileBox addSubview:currentTile];
+	[self addSubview:self.tileBox];
+	
+	NSDate *date = [NSDate date];
+	self.monthYear.text = [NSString stringWithFormat:@"%@ %@",[date monthString],[date yearString]];
+	[self addSubview:self.monthYear];
+	
+    [self addSubview:self.rightArrow];
+	[self addSubview:self.leftArrow];
+	[self addSubview:self.shadow];
+	self.shadow.frame = CGRectMake(0, self.frame.size.height-self.shadow.frame.size.height+21, self.bounds.size.width, self.shadow.frame.size.height);
+}
 
 - (NSDate*) dateForMonthChange:(UIView*)sender {
 	BOOL isNext = (sender.tag == 1);
