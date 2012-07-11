@@ -117,6 +117,60 @@
  @param animated Animation flag
  */ 
 - (void) calendarMonthView:(TKCalendarMonthView*)monthView monthDidChange:(NSDate*)month animated:(BOOL)animated;
+
+/** A custom UIImage to use as the right arrow
+ @param monthView The calendar month view.
+ @return UIImage if required, nil otherwise
+ */ 
+- (UIImage *) rightArrowForMonthView:(TKCalendarMonthView*)monthView;
+
+/** A custom UIImage to use as the left arrow
+ @param monthView The calendar month view.
+ @return UIImage if required, nil otherwise
+ */ 
+- (UIImage *) leftArrowForMonthView:(TKCalendarMonthView*)monthView;
+
+/** A custom UIImageView to use as the top bar image
+ @param monthView The calendar month view.
+ @return UIImageView if required, nil otherwise
+ */ 
+- (UIImageView *) topBarForMonthView:(TKCalendarMonthView*)monthView;
+
+/** A custom UIImageView to use as the shadow
+ @param monthView The calendar month view.
+ @return UIImageView if required, nil otherwise
+ */ 
+- (UIImageView *) shadowForMonthView:(TKCalendarMonthView*)monthView;
+
+/** A custom UIImage to use as the default date tile
+ @param monthView The calendar month view.
+ @return UIImage if required, nil otherwise
+ */ 
+- (UIImage *) dateTileForMonthView:(TKCalendarMonthView*)monthView;
+
+/** A custom UIImage to use as the today tile when not selected
+ @param monthView The calendar month view.
+ @return UIImage if required, nil otherwise
+ */ 
+- (UIImage *) todayTileForMonthView:(TKCalendarMonthView*)monthView;
+
+/** A custom UIImage to use as the selected tile
+ @param monthView The calendar month view.
+ @return UIImage if required, nil otherwise
+ */ 
+- (UIImage *) selectedTileForMonthView:(TKCalendarMonthView*)monthView;
+
+/** A custom UIImage to use as the selected tile when the date is today
+ @param monthView The calendar month view.
+ @return UIImage if required, nil otherwise
+ */ 
+- (UIImage *) todaySelectedTileForMonthView:(TKCalendarMonthView*)monthView;
+
+/** A custom UIImage to use as the tile to use when a day outside the current month is selected
+ @param monthView The calendar month view.
+ @return UIImage if required, nil otherwise
+ */ 
+- (UIImage *) hoverTileForMonthView:(TKCalendarMonthView*)monthView;
 @end
 
 
