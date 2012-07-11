@@ -367,7 +367,7 @@
 		int index = today +  pre-1;
 		CGRect r =[self rectForCellAtIndex:index];
 		r.origin.y -= 7;
-		[[UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Today Tile.png")] drawInRect:r];
+		[[self.delegate performSelector:@selector(todayTile)] drawInRect:r];
 	}
 	
 	int index = 0;
@@ -434,16 +434,14 @@
 	if(day == today){
 		self.currentDay.shadowOffset = CGSizeMake(0, 1);
 		self.dot.shadowOffset = CGSizeMake(0, 1);
-		self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Today Selected Tile.png")];
+		self.selectedImageView.image = [self.delegate performSelector:@selector(todaySelectedTile)];
 		markWasOnToday = YES;
 	}else if(markWasOnToday){
 		self.dot.shadowOffset = CGSizeMake(0, -1);
 		self.currentDay.shadowOffset = CGSizeMake(0, -1);
 		
 		
-
-		NSString *path = TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Date Tile Selected.png");
-		self.selectedImageView.image = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
+		self.selectedImageView.image = [[self.delegate performSelector:@selector(selectedTile)] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
 		markWasOnToday = NO;
 	}
 	
@@ -527,20 +525,19 @@
 	
 	
 	if(portion != 1){
-		self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Date Tile Gray.png")];
+		self.selectedImageView.image = [self.delegate performSelector:@selector(hoverTile)];
 		markWasOnToday = YES;
 	}else if(portion==1 && day == today){
 		self.currentDay.shadowOffset = CGSizeMake(0, 1);
 		self.dot.shadowOffset = CGSizeMake(0, 1);
-		self.selectedImageView.image = [UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Today Selected Tile.png")];
+		self.selectedImageView.image = [self.delegate performSelector:@selector(todaySelectedTile)];
 		markWasOnToday = YES;
 	}else if(markWasOnToday){
 		self.dot.shadowOffset = CGSizeMake(0, -1);
 		self.currentDay.shadowOffset = CGSizeMake(0, -1);
 		
 		
-		NSString *path = TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Date Tile Selected.png");
-		self.selectedImageView.image = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
+		self.selectedImageView.image = [[self.delegate performSelector:@selector(selectedTile)] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
 		
 		markWasOnToday = NO;
 	}
@@ -627,8 +624,7 @@
 - (UIImageView *) selectedImageView{
 	if(selectedImageView==nil){
 		
-		NSString *path = TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Date Tile Selected.png");
-		UIImage *img = [[UIImage imageWithContentsOfFile:path] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
+		UIImage *img = [[self.delegate performSelector:@selector(selectedTile)] stretchableImageWithLeftCapWidth:1 topCapHeight:0];
 		selectedImageView = [[UIImageView alloc] initWithImage:img];
 		selectedImageView.frame = CGRectMake(0, 0, 47, 45);
 	}
