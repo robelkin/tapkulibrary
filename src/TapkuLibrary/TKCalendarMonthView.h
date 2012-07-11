@@ -34,10 +34,10 @@
 
 
 @class TKCalendarMonthTiles;
-@protocol TKCalendarMonthViewDelegate, TKCalendarMonthViewDataSource;
+@protocol TKCalendarMonthViewDelegate, TKCalendarMonthViewDataSource, TKCalendarMonthTilesDelegate;
 
 /** `TKCalendarMonthView` imitates the month grid in the Calendar app on iPhone. */
-@interface TKCalendarMonthView : UIView {
+@interface TKCalendarMonthView : UIView<TKCalendarMonthTilesDelegate> {
 
 	TKCalendarMonthTiles *currentTile,*oldTile;
 	UIButton *leftArrow, *rightArrow;
@@ -186,4 +186,5 @@
  
  */
 - (NSArray*) calendarMonthView:(TKCalendarMonthView*)monthView marksFromDate:(NSDate*)startDate toDate:(NSDate*)lastDate;
+
 @end
