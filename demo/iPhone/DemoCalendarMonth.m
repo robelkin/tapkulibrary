@@ -135,5 +135,49 @@
 	
 }
 
+- (UIImage *) rightArrowForMonthView:(TKCalendarMonthView*)monthView
+{
+    return nil;
+}
+
+- (UIImage *) leftArrowForMonthView:(TKCalendarMonthView*)monthView
+{
+    return nil;
+}
+
+- (UIImageView *) topBarForMonthView:(TKCalendarMonthView*)monthView
+{
+    return nil;
+}
+
+- (UIImageView *) shadowForMonthView:(TKCalendarMonthView*)monthView
+{
+    return nil;
+}
+
+- (UIImage *) dateTileForMonthView:(TKCalendarMonthView*)monthView;
+{
+    return nil;
+}
+
+- (UIImage *) todayTileForMonthView:(TKCalendarMonthView*)monthView
+{
+    return nil;
+}
+
+- (UIImage *) selectedTileForMonthView:(TKCalendarMonthView*)monthView
+{
+    return nil;
+}
+
+- (UIImage *) todaySelectedTileForMonthView:(TKCalendarMonthView*)monthView
+{
+    return nil;
+}
+
+- (UIImage *) hoverTileForMonthView:(TKCalendarMonthView*)monthView
+{
+    return nil;
+}
 
 @end
