@@ -968,7 +968,14 @@
 #pragma mark Properties
 - (UIImageView *) topBackground{
 	if(topBackground==nil){
-		topBackground = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Grid Top Bar.png")]];
+        if([self.delegate respondsToSelector:@selector(topBarForMonthView:)] && [self.delegate performSelector:@selector(topBarForMonthView:) withObject:self] != nil)
+        {
+            topBackground = [self.delegate performSelector:@selector(topBarForMonthView:) withObject:self];
+        }
+        else 
+        {
+            topBackground = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Grid Top Bar.png")]];
+        }
 	}
 	return topBackground;
 }
@@ -988,7 +995,15 @@
 		leftArrow = [UIButton buttonWithType:UIButtonTypeCustom];
 		leftArrow.tag = 0;
 		[leftArrow addTarget:self action:@selector(changeMonth:) forControlEvents:UIControlEventTouchUpInside];
-		[leftArrow setImage:[UIImage imageNamedTK:@"TapkuLibrary.bundle/Images/calendar/Month Calendar Left Arrow"] forState:0];
+        if([self.delegate respondsToSelector:@selector(leftArrowForMonthView:)] && [self.delegate performSelector:@selector(leftArrowForMonthView:) withObject:self] != nil)
+        {
+            [leftArrow setImage:[self.delegate performSelector:@selector(leftArrowForMonthView:) withObject:self] forState:0];
+        }
+        else 
+        {
+            [leftArrow setImage:[UIImage imageNamedTK:@"TapkuLibrary.bundle/Images/calendar/Month Calendar Left Arrow"] forState:0];
+        }
+
 		leftArrow.frame = CGRectMake(0, 0, 48, 38);
 	}
 	return leftArrow;
@@ -998,8 +1013,15 @@
 		rightArrow = [UIButton buttonWithType:UIButtonTypeCustom];
 		rightArrow.tag = 1;
 		[rightArrow addTarget:self action:@selector(changeMonth:) forControlEvents:UIControlEventTouchUpInside];
-		rightArrow.frame = CGRectMake(320-45, 0, 48, 38);
-		[rightArrow setImage:[UIImage imageNamedTK:@"TapkuLibrary.bundle/Images/calendar/Month Calendar Right Arrow"] forState:0];
+        if([self.delegate respondsToSelector:@selector(rightArrowForMonthView:)] && [self.delegate performSelector:@selector(rightArrowForMonthView:) withObject:self] != nil)
+        {
+            [rightArrow setImage:[self.delegate performSelector:@selector(rightArrowForMonthView:) withObject:self] forState:0];
+        }
+        else 
+        {
+            [rightArrow setImage:[UIImage imageNamedTK:@"TapkuLibrary.bundle/Images/calendar/Month Calendar Right Arrow"] forState:0];
+        }
+        rightArrow.frame = CGRectMake(320-45, 0, 48, 38);
 	}
 	return rightArrow;
 }
@@ -1011,7 +1033,14 @@
 }
 - (UIImageView *) shadow{
 	if(shadow==nil){
-		shadow = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Shadow.png")]];
+        if([self.delegate respondsToSelector:@selector(shadowForMonthView:)] && [self.delegate performSelector:@selector(shadowForMonthView:) withObject:self] != nil)
+        {
+            shadow = [self.delegate performSelector:@selector(shadowForMonthView:) withObject:self];
+        }
+        else 
+        {
+            shadow = [[UIImageView alloc] initWithImage:[UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Shadow.png")]];
+        }
 	}
 	return shadow;
 }
