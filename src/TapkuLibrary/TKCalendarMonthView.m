@@ -310,9 +310,7 @@
 	
 	
 	self.frame = CGRectMake(0, 1.0, 320.0f, h+1);
-	
-	[self.selectedImageView addSubview:self.currentDay];
-	[self.selectedImageView addSubview:self.dot];
+
 	self.multipleTouchEnabled = NO;
 	
 	return self;
@@ -356,6 +354,9 @@
 }
 - (void) drawRect:(CGRect)rect {
 	
+    [self.selectedImageView addSubview:self.currentDay];
+	[self.selectedImageView addSubview:self.dot];
+    
 	CGContextRef context = UIGraphicsGetCurrentContext();
 	UIImage *tile = [UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Date Tile.png")];
 	CGRect r = CGRectMake(0, 0, 46, 44);
