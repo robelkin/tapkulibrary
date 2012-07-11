@@ -121,7 +121,6 @@
 
 @end
 
-
 #pragma mark -
 @interface TKCalendarMonthTiles : UIView {
 	
@@ -142,6 +141,7 @@
 	BOOL startOnSunday;
 }
 @property (strong,nonatomic) NSDate *monthDate;
+@property (nonatomic,retain) id <TKCalendarMonthTilesDelegate> delegate;
 
 - (id) initWithMonth:(NSDate*)date marks:(NSArray*)marks startDayOnSunday:(BOOL)sunday;
 - (void) setTarget:(id)target action:(SEL)action;
@@ -150,6 +150,18 @@
 - (NSDate*) dateSelected;
 
 + (NSArray*) rangeOfDatesInMonthGrid:(NSDate*)date startOnSunday:(BOOL)sunday;
+
+@end
+
+/** The delegate of a `TKCalendarMonthView` object must adopt the `TKCalendarMonthViewDelegate` protocol. */ 
+@protocol TKCalendarMonthTilesDelegate <NSObject>
+@optional
+
+- (UIImage *) dateTile;
+- (UIImage *) todayTile;
+- (UIImage *) selectedTile;
+- (UIImage *) todaySelectedTile;
+- (UIImage *) hoverTile;
 
 @end
 
@@ -164,8 +176,7 @@
 
 #pragma mark -
 @implementation TKCalendarMonthTiles
-@synthesize monthDate;
-
+@synthesize monthDate, delegate;
 
 + (NSArray*) rangeOfDatesInMonthGrid:(NSDate*)date startOnSunday:(BOOL)sunday{
 	
