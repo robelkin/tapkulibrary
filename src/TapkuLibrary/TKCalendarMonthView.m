@@ -660,6 +660,7 @@
 
 	sunday = s;
 	currentTile = [[TKCalendarMonthTiles alloc] initWithMonth:[[NSDate date] firstOfMonth] marks:nil startDayOnSunday:sunday];
+    currentTile.delegate = self;
 	[currentTile setTarget:self action:@selector(tile:)];
 	
 	CGRect r = CGRectMake(0, 0, self.tileBox.bounds.size.width, self.tileBox.bounds.size.height + self.tileBox.frame.origin.y);
@@ -761,6 +762,7 @@
 	NSArray *dates = [TKCalendarMonthTiles rangeOfDatesInMonthGrid:nextMonth startOnSunday:sunday];
 	NSArray *ar = [self.dataSource calendarMonthView:self marksFromDate:[dates objectAtIndex:0] toDate:[dates lastObject]];
 	TKCalendarMonthTiles *newTile = [[TKCalendarMonthTiles alloc] initWithMonth:nextMonth marks:ar startDayOnSunday:sunday];
+    newTile.delegate = self;
 	[newTile setTarget:self action:@selector(tile:)];
 	
 	
@@ -884,6 +886,7 @@
 		TKCalendarMonthTiles *newTile = [[TKCalendarMonthTiles alloc] initWithMonth:month 
 																			  marks:data 
 																   startDayOnSunday:sunday];
+        newTile.delegate = self;
 		[newTile setTarget:self action:@selector(tile:)];
 		[currentTile removeFromSuperview];
 		currentTile = newTile;
@@ -906,6 +909,7 @@
 	NSArray *ar = [self.dataSource calendarMonthView:self marksFromDate:[dates objectAtIndex:0] toDate:[dates lastObject]];
 	
 	TKCalendarMonthTiles *refresh = [[TKCalendarMonthTiles alloc] initWithMonth:[currentTile monthDate] marks:ar startDayOnSunday:sunday];
+    refresh.delegate = self;
 	[refresh setTarget:self action:@selector(tile:)];
 	
 	[self.tileBox addSubview:refresh];
