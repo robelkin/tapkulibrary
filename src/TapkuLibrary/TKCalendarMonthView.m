@@ -358,7 +358,7 @@
 	[self.selectedImageView addSubview:self.dot];
     
 	CGContextRef context = UIGraphicsGetCurrentContext();
-	UIImage *tile = [UIImage imageWithContentsOfFile:TKBUNDLE(@"TapkuLibrary.bundle/Images/calendar/Month Calendar Date Tile.png")];
+	UIImage *tile = [self.delegate performSelector:@selector(dateTile)];
 	CGRect r = CGRectMake(0, 0, 46, 44);
 	CGContextDrawTiledImage(context, r, tile.CGImage);
 	
